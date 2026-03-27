@@ -4,7 +4,14 @@ import OpenAI from "openai";
 function getClient() {
   const apiKey = process.env.OPENAI_API_KEY || process.env.AI_API_KEY || "";
   const baseURL = process.env.AI_BASE_URL || "https://api.openai.com/v1";
-  return new OpenAI({ apiKey, baseURL });
+  
+  const defaultHeaders: Record<string, string> = {};
+  if (baseURL.includes("openrouter")) {
+    defaultHeaders["HTTP-Referer"] = process.env.OPENROUTER_REFERRER || "https://sarapscan.app";
+    defaultHeaders["X-Title"] = "SARAPSCAN";
+  }
+  
+  return new OpenAI({ apiKey, baseURL, defaultHeaders: Object.keys(defaultHeaders).length > 0 ? defaultHeaders : undefined });
 }
 
 export async function POST(request: Request) {
