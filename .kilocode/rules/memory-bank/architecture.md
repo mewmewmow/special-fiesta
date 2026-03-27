@@ -1,120 +1,70 @@
-# System Patterns: Next.js Starter Template
+# System Patterns: SARAPSCAN
 
 ## Architecture Overview
 
 ```
 src/
-├── app/                    # Next.js App Router
-│   ├── layout.tsx          # Root layout + metadata
-│   ├── page.tsx            # Home page
-│   ├── globals.css         # Tailwind imports + global styles
-│   └── favicon.ico         # Site icon
-└── (expand as needed)
-    ├── components/         # React components (add when needed)
-    ├── lib/                # Utilities and helpers (add when needed)
-    └── db/                 # Database files (add via recipe)
+├── app/                          # Next.js App Router
+│   ├── layout.tsx                # Root layout + SARAPSCAN metadata
+│   ├── page.tsx                  # Main app shell (client component)
+│   ├── globals.css               # Filipino kitchen theme
+│   └── api/                      # API routes for AI
+│       ├── generate/route.ts     # Text generation endpoint
+│       ├── vision/route.ts       # Image analysis endpoint
+│       └── chat/route.ts         # Chat endpoint
+├── components/
+│   ├── Icons.tsx                 # SVG icon components
+│   ├── BottomNav.tsx             # Tab bar navigation
+│   ├── Onboarding.tsx            # Swipe onboarding
+│   ├── ImageChecker.tsx          # Feature 1: Authenticity checker
+│   ├── RecipeGenerator.tsx       # Feature 2: Ingredient recipes
+│   ├── RandomUlam.tsx            # Feature 3: Random ulam
+│   ├── RescueMission.tsx         # Feature 4: Cooking rescue
+│   └── AskManang.tsx             # Feature 5: Chat assistant
+└── lib/
+    ├── types.ts                  # TypeScript interfaces
+    ├── ai.ts                     # Client-side AI call helpers
+    └── storage.ts                # LocalStorage helpers
 ```
 
 ## Key Design Patterns
 
-### 1. App Router Pattern
+### 1. Client-Side Tab Navigation
 
-Uses Next.js App Router with file-based routing:
-```
-src/app/
-├── page.tsx           # Route: /
-├── about/page.tsx     # Route: /about
-├── blog/
-│   ├── page.tsx       # Route: /blog
-│   └── [slug]/page.tsx # Route: /blog/:slug
-└── api/
-    └── route.ts       # API Route: /api
-```
+The app uses a single page (`page.tsx`) with client-side tab routing:
+- State-based screen switching (no URL changes)
+- Bottom navigation bar with 5 tabs
+- Each feature is a separate component
 
-### 2. Component Organization Pattern (When Expanding)
+### 2. AI Integration Pattern
 
-```
-src/components/
-├── ui/                # Reusable UI components (Button, Card, etc.)
-├── layout/            # Layout components (Header, Footer)
-├── sections/          # Page sections (Hero, Features, etc.)
-└── forms/             # Form components
-```
+Three-tier architecture:
+1. **Client components** call helper functions from `lib/ai.ts`
+2. **`lib/ai.ts`** makes fetch calls to Next.js API routes
+3. **API routes** use OpenAI SDK to call the AI model
 
-### 3. Server Components by Default
+This keeps the API key server-side while giving client components a clean interface.
 
-All components are Server Components unless marked with `"use client"`:
-```tsx
-// Server Component (default) - can fetch data, access DB
-export default function Page() {
-  return <div>Server rendered</div>;
-}
+### 3. Feature Component Pattern
 
-// Client Component - for interactivity
-"use client";
-export default function Counter() {
-  const [count, setCount] = useState(0);
-  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
-}
-```
+Each feature follows the same structure:
+- State for input, result, loading, error
+- Form UI with inputs/dropdowns
+- Submit button that calls `callTextAI()` or `callVisionAI()`
+- Result card with favorite toggle
+- Consistent loading spinner and error display
 
-### 4. Layout Pattern
+### 4. Favorites System
 
-Layouts wrap pages and can be nested:
-```tsx
-// src/app/layout.tsx - Root layout
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
-
-// src/app/dashboard/layout.tsx - Nested layout
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex">
-      <Sidebar />
-      <main>{children}</main>
-    </div>
-  );
-}
-```
+- Uses `localStorage` via `lib/storage.ts`
+- Each saved recipe has: id, title, content, feature type, timestamp
+- Heart icon toggle on result cards
+- Favorites panel accessible from header
 
 ## Styling Conventions
 
-### Tailwind CSS Usage
-- Utility classes directly on elements
-- Component composition for repeated patterns
-- Responsive: `sm:`, `md:`, `lg:`, `xl:`
-
-### Common Patterns
-```tsx
-// Container
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-// Responsive grid
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-// Flexbox centering
-<div className="flex items-center justify-center">
-```
-
-## File Naming Conventions
-
-- Components: PascalCase (`Button.tsx`, `Header.tsx`)
-- Utilities: camelCase (`utils.ts`, `helpers.ts`)
-- Pages/Routes: lowercase (`page.tsx`, `layout.tsx`)
-- Directories: kebab-case (`api-routes/`) or lowercase (`components/`)
-
-## State Management
-
-For simple needs:
-- `useState` for local component state
-- `useContext` for shared state
-- Server Components for data fetching
-
-For complex needs (add when necessary):
-- Zustand for client state
-- React Query for server state
+- Custom CSS variables for Filipino kitchen colors
+- Tailwind utility classes with custom theme tokens
+- Mobile-first: max-w-lg containers, responsive padding
+- Custom animations: `animate-fade-up`, `animate-slide-in`
+- Chat bubble styles for Manang conversation

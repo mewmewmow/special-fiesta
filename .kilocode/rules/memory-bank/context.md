@@ -1,87 +1,54 @@
-# Active Context: Next.js Starter Template
+# Active Context: SARAPSCAN
 
 ## Current State
 
-**Template Status**: ✅ Ready for development
+**App Status**: Fully built and functional
 
-The template is a clean Next.js 16 starter with TypeScript and Tailwind CSS 4. It's ready for AI-assisted expansion to build any type of application.
+SARAPSCAN is a mobile-first Filipino Dish Authenticity & Recipe Assistant app built with Next.js 16. It uses AI modules (text generation, vision, chatbot) to help Filipino home cooks with 5 core features.
 
 ## Recently Completed
 
-- [x] Base Next.js 16 setup with App Router
-- [x] TypeScript configuration with strict mode
-- [x] Tailwind CSS 4 integration
-- [x] ESLint configuration
-- [x] Memory bank documentation
-- [x] Recipe system for common features
+- [x] Full SARAPSCAN app implementation
+- [x] 5 feature screens (Checker, Recipe Generator, Random Ulam, Rescue, Manang)
+- [x] Bottom tab navigation with 5 tabs
+- [x] Onboarding swipe screen
+- [x] AI API routes for text generation, vision, and chat
+- [x] Local storage for favorites/saved recipes
+- [x] Filipino kitchen theme (terracotta, cream, dark green)
+- [x] Taglish (Tagalog + English) UI language
+- [x] openai package dependency for AI API calls
 
 ## Current Structure
 
 | File/Directory | Purpose | Status |
 |----------------|---------|--------|
-| `src/app/page.tsx` | Home page | ✅ Ready |
-| `src/app/layout.tsx` | Root layout | ✅ Ready |
-| `src/app/globals.css` | Global styles | ✅ Ready |
-| `.kilocode/` | AI context & recipes | ✅ Ready |
+| `src/app/page.tsx` | Main app shell with tab routing | Active |
+| `src/app/layout.tsx` | Root layout with SARAPSCAN metadata | Active |
+| `src/app/globals.css` | Filipino kitchen theme colors | Active |
+| `src/app/api/generate/route.ts` | Text generation API | Active |
+| `src/app/api/vision/route.ts` | Vision/image analysis API | Active |
+| `src/app/api/chat/route.ts` | Chat API for Manang | Active |
+| `src/components/BottomNav.tsx` | Bottom tab navigation | Active |
+| `src/components/Onboarding.tsx` | Swipe onboarding screen | Active |
+| `src/components/ImageChecker.tsx` | Feature 1: Authenticity checker | Active |
+| `src/components/RecipeGenerator.tsx` | Feature 2: Ingredient-based recipes | Active |
+| `src/components/RandomUlam.tsx` | Feature 3: Random ulam generator | Active |
+| `src/components/RescueMission.tsx` | Feature 4: Cooking rescue | Active |
+| `src/components/AskManang.tsx` | Feature 5: Chat assistant | Active |
+| `src/components/Icons.tsx` | SVG icon components | Active |
+| `src/lib/ai.ts` | AI client helper functions | Active |
+| `src/lib/storage.ts` | Local storage helpers | Active |
+| `src/lib/types.ts` | TypeScript type definitions | Active |
 
 ## Current Focus
 
-The template is ready. Next steps depend on user requirements:
-
-1. What type of application to build
-2. What features are needed
-3. Design/branding preferences
-
-## Quick Start Guide
-
-### To add a new page:
-
-Create a file at `src/app/[route]/page.tsx`:
-```tsx
-export default function NewPage() {
-  return <div>New page content</div>;
-}
-```
-
-### To add components:
-
-Create `src/components/` directory and add components:
-```tsx
-// src/components/ui/Button.tsx
-export function Button({ children }: { children: React.ReactNode }) {
-  return <button className="px-4 py-2 bg-blue-600 text-white rounded">{children}</button>;
-}
-```
-
-### To add a database:
-
-Follow `.kilocode/recipes/add-database.md`
-
-### To add API routes:
-
-Create `src/app/api/[route]/route.ts`:
-```tsx
-import { NextResponse } from "next/server";
-
-export async function GET() {
-  return NextResponse.json({ message: "Hello" });
-}
-```
-
-## Available Recipes
-
-| Recipe | File | Use Case |
-|--------|------|----------|
-| Add Database | `.kilocode/recipes/add-database.md` | Data persistence with Drizzle + SQLite |
-
-## Pending Improvements
-
-- [ ] Add more recipes (auth, email, etc.)
-- [ ] Add example components
-- [ ] Add testing setup recipe
+App is complete. Environment variables needed for AI functionality:
+- `OPENAI_API_KEY` or `AI_API_KEY` - API key for AI calls
+- `AI_BASE_URL` - (optional) custom API endpoint
+- `AI_MODEL` - (optional) model name, defaults to gpt-4o-mini
 
 ## Session History
 
 | Date | Changes |
 |------|---------|
-| Initial | Template created with base setup |
+| 2026-03-27 | Built complete SARAPSCAN app with 5 features, AI integration, onboarding, favorites |

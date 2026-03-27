@@ -1,44 +1,40 @@
-# Product Context: Next.js Starter Template
+# Product Context: SARAPSCAN
 
-## Why This Template Exists
+## Why This Exists
 
-Starting a new Next.js project involves boilerplate setup, configuration decisions, and establishing patterns. This template provides a clean, opinionated starting point that eliminates setup friction and establishes best practices from the start. It's optimized for AI-assisted development, where an AI can quickly extend the template based on user requirements.
+Filipino cooking is deeply cultural, and many home cooks want guidance on whether their dishes look authentic, what to cook with available ingredients, and how to fix cooking mistakes. SARAPSCAN brings AI-powered Filipino cooking assistance in a fun, accessible way using Taglish.
 
-## Problems It Solves
+## User Experience Goals
 
-1. **Setup Time**: Eliminates boilerplate configuration (TypeScript, Tailwind, ESLint)
-2. **Decision Fatigue**: Pre-made choices for tooling and patterns
-3. **AI Context**: Memory bank provides persistent context for AI assistants
-4. **Extensibility**: Recipe system for adding common features
-5. **Consistency**: Standardized project structure and conventions
+- **Warm and welcoming** - Feel like a Filipino kitchen (terracotta/cream theme)
+- **Fun and encouraging** - Taglish language, playful copy
+- **Fast and practical** - Quick answers, no fluff
+- **Mobile-first** - Designed for phone use while cooking
 
-## How It Should Work (User Flow)
+## Key User Flows
 
-1. User starts with this template
-2. User describes what they want to build to AI assistant
-3. AI adds pages, components, and features as needed
-4. AI uses recipes for common additions (database, auth)
-5. User previews changes via hot reload
-6. Iterate until satisfied
-7. Deploy
+### 1. Check Dish Authenticity
+Home → Camera tab → Upload photo → Get AI rating + feedback → Save to favorites
 
-## Key User Experience Goals
+### 2. Generate Recipe from Ingredients
+Home → Sangkap tab → Type ingredients → Get AI recipe → Save to favorites
 
-- **Zero to Feature Fast**: Get building immediately, no setup required
-- **AI-Friendly**: Memory bank and recipes make AI assistance effective
-- **Flexible Foundation**: Can become any type of application
-- **Best Practices Built-In**: TypeScript strict mode, ESLint, clean structure
+### 3. Get Random Ulam Suggestion
+Home → Random tab → Select time + weather → Get AI dish suggestion
 
-## What This Template Provides
+### 4. Rescue Cooking Disaster
+Home → Rescue tab → Enter dish + problem → Get quick fix tip
 
-1. **Clean App Structure**: Single page ready for expansion
-2. **Type Safety**: Full TypeScript setup with strict mode
-3. **Modern Styling**: Tailwind CSS 4 ready to use
-4. **Code Quality**: ESLint configured
-5. **Extensibility**: Recipe system for common features
+### 5. Chat with Manang
+Home → Manang tab → Type cooking question → Get Taglish response with humor
 
-## Integration Points
+### 6. View Saved Favorites
+Home → Heart icon (top right) → View saved recipes → Delete if needed
 
-- **Database**: Use add-database recipe for Drizzle + SQLite
-- **Styling**: Tailwind CSS pre-configured
-- **AI Assistance**: Memory bank for context persistence
+## Design Language
+
+- **Colors**: Terracotta (#C4613A), Cream (#FFF8F0), Dark Green (#2D5A27)
+- **Font**: System sans-serif + Georgia for branding
+- **Border radius**: Rounded (12-18px)
+- **Cards**: Warm gradient backgrounds with subtle borders
+- **Animations**: Fade-up, slide-in, smooth transitions

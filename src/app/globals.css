@@ -1,1 +1,85 @@
 @import "tailwindcss";
+
+@theme {
+  --color-terracotta: #C4613A;
+  --color-terracotta-light: #D98B6A;
+  --color-terracotta-dark: #9E4A28;
+  --color-cream: #FFF8F0;
+  --color-cream-dark: #F5E6D3;
+  --color-green: #2D5A27;
+  --color-green-light: #4A7C42;
+  --color-green-dark: #1E3D1A;
+  --color-wood: #8B6F4E;
+  --color-wood-light: #A68B6B;
+  --font-family-display: "Georgia", serif;
+}
+
+html {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+body {
+  background-color: #FFF8F0;
+  color: #3D2B1F;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #F5E6D3;
+}
+::-webkit-scrollbar-thumb {
+  background: #D98B6A;
+  border-radius: 2px;
+}
+
+/* Swipe animation */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 97, 58, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(196, 97, 58, 0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Chat bubble styles */
+.chat-bubble-user {
+  background: linear-gradient(135deg, #C4613A, #D98B6A);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+}
+
+.chat-bubble-assistant {
+  background: #F5E6D3;
+  color: #3D2B1F;
+  border-radius: 18px 18px 18px 4px;
+}
+
+/* Result card glow */
+.result-card {
+  background: linear-gradient(145deg, #FFF8F0, #F5E6D3);
+  border: 1px solid #D98B6A;
+}
